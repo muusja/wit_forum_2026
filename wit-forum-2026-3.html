@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WiT Forum 2026 — Tech Horizons: Impacting our Future</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:     #623cea;
+    --peach:    #fab07c;
+    --yellow:   #fae47c;
+    --purple:   #623cea;
+    --green:    #026451;
+    --ink:      #0d0d0d;
+    --bg:       #0f0f0f;
+    --bg2:      #151515;
+    --bg3:      #1a1a1a;
+    --text:     #f0ece8;
+    --mute:     rgba(240,236,232,0.6);
+    --mute2:    rgba(240,236,232,0.35);
+    --line:     rgba(240,236,232,0.1);
+    --line2:    rgba(240,236,232,0.18);
+    --glass:    rgba(255,255,255,0.04);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: 'Work Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.45;
+  }
+
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+
+  /* ---------- Top bar ---------- */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(15,15,15,0.82);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .logo img {
+    display: block;
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer-logo img {
+    height: 28px;
+    filter: brightness(0) invert(1);
+  }
+
+  .top-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .top-date {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--mute);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .top-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 20px;
+    background: #623cea;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .top-cta:hover { background: var(--peach); transform: translateY(-1px); }
+
+  /* ---------- Blob decorations + animations ---------- */
+  .blob {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .blob svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: spin var(--spin, 40s) linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes driftA {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(40px, -30px) scale(1.05); }
+    50%  { transform: translate(-20px, 40px) scale(0.96); }
+    75%  { transform: translate(30px, 20px) scale(1.03); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  @keyframes driftB {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(-50px, 30px) scale(1.07); }
+    66%  { transform: translate(30px, -40px) scale(0.94); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  @keyframes driftC {
+    0%   { transform: translate(0, 0) scale(1); }
+    20%  { transform: translate(25px, 35px) scale(1.04); }
+    50%  { transform: translate(-30px, -25px) scale(0.97); }
+    80%  { transform: translate(40px, 10px) scale(1.08); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  .blob-1 { top: -80px; right: -120px; width: 520px; height: 520px; animation: driftA 18s ease-in-out infinite; opacity: 1; }
+  .blob-2 { top: 320px; left: -140px; width: 380px; height: 380px; animation: driftB 22s ease-in-out infinite; opacity: 1; }
+  .blob-3 { bottom: -100px; right: 10%; width: 260px; height: 260px; animation: driftC 15s ease-in-out infinite; opacity: 1; }
+
+  .blob-1 svg { --spin: 55s; }
+  .blob-2 svg { --spin: 70s; animation-direction: reverse; }
+  .blob-3 svg { --spin: 40s; }
+
+  .blob path {
+    animation: morph 14s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .blob-2 path { animation-duration: 18s; animation-delay: -3s; }
+  .blob-3 path { animation-duration: 11s; animation-delay: -7s; }
+  .about-blob-1 path { animation: morph 16s ease-in-out infinite; animation-delay: -4s; }
+  .about-blob-2 path { animation: morph 20s ease-in-out infinite; animation-delay: -9s; }
+  .closing-blob path { animation: morph 17s ease-in-out infinite; animation-delay: -2s; }
+
+  @keyframes morph {
+    0%, 100% { d: path("M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"); }
+    33%      { d: path("M480,140 C530,220 540,340 470,430 C400,520 270,540 170,490 C70,440 40,330 70,220 C100,110 210,60 330,80 C400,95 450,90 480,140 Z"); }
+    66%      { d: path("M450,100 C560,170 570,310 520,410 C470,510 290,570 180,520 C70,470 20,350 60,230 C100,110 230,40 340,50 C400,55 400,80 450,100 Z"); }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 73px);
+    padding: 80px 48px 100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      radial-gradient(900px 600px at 50% 30%, rgba(98,60,234,0.12), transparent 60%),
+      radial-gradient(600px 500px at 10% 80%, rgba(250,176,124,0.07), transparent 60%),
+      var(--bg);
+  }
+
+  .hero-inner {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #623cea;
+    margin-bottom: 20px;
+  }
+
+  .headline {
+    font-weight: 900;
+    font-size: clamp(48px, 7.5vw, 104px);
+    line-height: 0.93;
+    letter-spacing: -2.5px;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .headline .accent { color: #623cea; }
+
+  .lead {
+    font-weight: 300;
+    font-size: clamp(18px, 1.9vw, 22px);
+    line-height: 1.45;
+    max-width: 600px;
+    margin: 0 auto 36px;
+    color: var(--mute);
+  }
+
+  .event-card {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding: 18px 26px;
+    background: var(--glass);
+    border: 1px solid var(--line2);
+    border-radius: 8px;
+    margin: 0 auto 36px;
+    backdrop-filter: blur(8px);
+  }
+
+  .event-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .event-item .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--mute2);
+  }
+
+  .event-item .value {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ---------- CTA button ---------- */
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 34px;
+    background: #623cea;
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease;
+    text-transform: uppercase;
+  }
+
+  .cta:hover { background: var(--peach); transform: translateY(-2px); }
+  .cta:active { transform: translateY(0); }
+  .cta .arrow { font-size: 22px; line-height: 1; }
+
+  .cta-note {
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--mute2);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 18px 28px;
+    background: transparent;
+    color: var(--mute);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid var(--line2);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover { border-color: #623cea; color: var(--text); }
+
+  .hero-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--mute);
+  }
+
+  .meta-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ---------- About section ---------- */
+  .about {
+    position: relative;
+    background: var(--bg2);
+    padding: 120px 48px;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about h2 {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 32px;
+    letter-spacing: -1px;
+  }
+
+  .about p {
+    font-size: 19px;
+    color: var(--mute);
+    margin-bottom: 20px;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .theme-block {
+    margin-top: 48px;
+    padding: 36px;
+    background: var(--bg3);
+    border: 1px solid var(--line2);
+    border-left: 4px solid #623cea;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .theme-block .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #623cea;
+    margin-bottom: 10px;
+  }
+
+  .theme-block h3 {
+    font-weight: 900;
+    font-size: clamp(26px, 3.5vw, 38px);
+    color: var(--text);
+    letter-spacing: -0.8px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+
+  .theme-block .theme-copy {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--mute);
+    margin: 0;
+    max-width: 640px;
+    font-weight: 300;
+  }
+
+  .about-blob-1 {
+    position: absolute;
+    top: -60px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    z-index: 1;
+    animation: driftB 24s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  .about-blob-2 {
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 260px;
+    height: 260px;
+    z-index: 1;
+    animation: driftC 19s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  .about-blob-1 svg,
+  .about-blob-2 svg,
+  .closing-blob svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: spin var(--spin, 60s) linear infinite;
+  }
+
+  .about-blob-1 svg { --spin: 65s; }
+  .about-blob-2 svg { --spin: 50s; animation-direction: reverse; }
+  .closing-blob svg { --spin: 75s; }
+
+  /* ---------- What to expect ---------- */
+  .expect {
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #623cea;
+    margin-bottom: 20px;
+  }
+
+  .expect h2 {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+    color: var(--text);
+  }
+
+  .expect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .expect-card {
+    padding: 36px 32px;
+    background: var(--bg2);
+    position: relative;
+    transition: background 0.2s ease;
+  }
+
+  .expect-card:hover { background: var(--bg3); }
+
+  .expect-card:nth-child(1) .card-accent { color: var(--peach); }
+  .expect-card:nth-child(2) .card-accent { color: #623cea; }
+  .expect-card:nth-child(3) .card-accent { color: var(--yellow); }
+
+  .card-accent {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .expect-card h3 {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--text);
+    letter-spacing: -0.2px;
+  }
+
+  .expect-card p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--mute);
+    font-weight: 300;
+  }
+
+  /* ---------- Agenda ---------- */
+  .agenda {
+    padding: 80px 48px 120px;
+    background: var(--bg2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .agenda-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .agenda h2 {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .agenda-sub {
+    font-size: 16px;
+    color: var(--mute2);
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .agenda-list.collapsed .agenda-item:nth-child(n+5) {
+    display: none;
+  }
+
+  .agenda-fade {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--bg2));
+    pointer-events: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .agenda-list.collapsed .agenda-fade {
+    display: block;
+  }
+
+  .agenda-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 28px;
+    background: transparent;
+    border: 1px solid var(--line2);
+    border-radius: 999px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--mute);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .agenda-toggle:hover { border-color: #623cea; color: #623cea; }
+
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s ease;
+  }
+
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-item:hover { background: var(--bg3); }
+
+  .agenda-time {
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #623cea;
+    letter-spacing: 0.3px;
+    border-right: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .agenda-content {
+    padding: 18px 24px;
+  }
+
+  .agenda-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .agenda-note {
+    font-size: 13px;
+    color: var(--mute2);
+    font-weight: 300;
+  }
+
+  .agenda-item.highlight .agenda-title { color: #623cea; }
+  .agenda-item.break .agenda-title { color: var(--peach); }
+
+  /* ---------- FAQ ---------- */
+  .faq {
+    padding: 80px 48px 120px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq h2 {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+    color: var(--text);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-item {
+    background: var(--bg2);
+    transition: background 0.15s ease;
+  }
+
+  .faq-item[open] { background: var(--bg3); }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 28px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary::after {
+    content: "+";
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1;
+    color: #623cea;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] summary::after { content: "−"; }
+
+  .faq-body {
+    padding: 0 28px 24px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--mute);
+    font-weight: 300;
+  }
+
+  .faq-body p { margin-bottom: 8px; }
+  .faq-body p:last-child { margin-bottom: 0; }
+  .faq-body ul { margin: 4px 0 12px 20px; }
+  .faq-body ul:last-child { margin-bottom: 0; }
+  .faq-body li { margin-bottom: 2px; }
+  .faq-body strong { color: var(--text); font-weight: 700; }
+
+  /* ---------- Closing CTA ---------- */
+  .closing {
+    position: relative;
+    padding: 120px 48px;
+    overflow: hidden;
+    text-align: center;
+    background:
+      radial-gradient(700px 500px at 50% 50%, rgba(115,193,229,0.1), transparent 70%),
+      var(--bg);
+    border-top: 1px solid var(--line);
+  }
+
+  .closing-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .closing h2 {
+    font-weight: 900;
+    font-size: clamp(38px, 5.5vw, 68px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+
+  .closing h2 .em { color: #623cea; }
+
+  .closing p {
+    font-size: 19px;
+    margin-bottom: 40px;
+    color: var(--mute);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .closing-blob {
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 340px;
+    height: 340px;
+    z-index: 1;
+    animation: driftA 21s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  .closing-blob-2 {
+    position: absolute;
+    left: -60px;
+    top: -40px;
+    width: 240px;
+    height: 240px;
+    z-index: 1;
+    animation: driftB 27s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--mute2);
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .footer-meta { font-weight: 300; }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-weight: 700;
+    color: var(--mute);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .footer-links a:hover { color: #623cea; border-bottom-color: #623cea; }
+
+  /* ---------- Modal ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    z-index: 100;
+    overflow-y: auto;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #141414;
+    border: 1px solid var(--line2);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 640px;
+    padding: 48px 44px;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  }
+
+  .modal h2 {
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+
+  .modal .sub {
+    font-size: 15px;
+    margin-bottom: 28px;
+    color: var(--mute);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: var(--bg3);
+    border: 1px solid var(--line2);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    transition: background 0.15s ease;
+  }
+
+  .close-btn:hover { background: #623cea; color: var(--ink); }
+
+  /* Stepper */
+  .stepper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--mute2);
+  }
+
+  .bar {
+    flex: 1;
+    height: 3px;
+    background: var(--line2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: #623cea;
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+
+  /* Steps */
+  .step { display: none; }
+  .step.active { display: block; }
+
+  .field { margin-bottom: 18px; }
+
+  .field label {
+    display: block;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 7px;
+    color: var(--mute);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid var(--line2);
+    border-radius: 6px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 15px;
+    background: var(--bg3);
+    color: var(--text);
+    transition: border-color 0.15s ease;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(240,236,232,0.4)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    outline: none;
+    border-color: #623cea;
+  }
+
+  .field input::placeholder { color: var(--mute2); }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
+
+  .checkbox-field {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+
+  .checkbox-field:hover { border-color: var(--line2); }
+
+  .checkbox-field input {
+    margin-top: 2px;
+    accent-color: #623cea;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .checkbox-field span {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--mute);
+    font-weight: 300;
+  }
+
+  .submit {
+    width: 100%;
+    padding: 16px;
+    background: #623cea;
+    color: var(--ink);
+    border: none;
+    border-radius: 999px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.15s ease;
+    margin-top: 14px;
+  }
+
+  .submit:hover { background: var(--peach); transform: translateY(-1px); }
+
+  .step-nav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 14px;
+  }
+
+  .btn-back {
+    padding: 16px 20px;
+    background: transparent;
+    border: 1px solid var(--line2);
+    border-radius: 999px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--mute);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .btn-back:hover { border-color: #623cea; color: #623cea; }
+
+  .step-nav .submit { flex: 1; margin-top: 0; }
+
+  .success {
+    display: none;
+    text-align: center;
+    padding: 32px 12px;
+  }
+
+  .success.on { display: block; }
+
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    background: #623cea;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .success-icon svg { width: 26px; height: 26px; display: block; }
+
+  .success h3 {
+    font-weight: 900;
+    font-size: 30px;
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .success p {
+    font-size: 15px;
+    color: var(--mute);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .blob, .about-blob-1, .about-blob-2, .closing-blob, .closing-blob-2,
+    .blob svg, .about-blob-1 svg, .about-blob-2 svg, .closing-blob svg,
+    .blob path, .about-blob-1 path, .about-blob-2 path, .closing-blob path {
+      animation: none !important;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .top-bar { padding: 14px 24px; }
+    .top-date { display: none; }
+    .hero { padding: 60px 24px 80px; }
+    .about { padding: 80px 24px; }
+    .expect { padding: 80px 24px; }
+    .agenda { padding: 60px 24px 80px; }
+    .faq { padding: 60px 24px 80px; }
+    .closing { padding: 80px 24px; }
+    footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .modal { padding: 32px 24px; }
+    .event-card { gap: 20px; padding: 16px 18px; }
+    .agenda-item { grid-template-columns: 90px 1fr; }
+    .agenda-time { padding: 14px 12px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="top-bar">
+    <a class="logo" href="/" aria-label="Women in Tech Finland">
+      <img src="wit-logo-white.png" alt="Women in Tech Finland" />
+    </a>
+    <div class="top-right">
+      <span class="top-date">22 Oct 2026 · Helsinki</span>
+      <button class="top-cta" onclick="openModal()">Pre-sign up →</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="blob blob-1" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fab07c" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+    <div class="blob blob-2" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#623cea" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+    <div class="blob blob-3" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fae47c" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner">
+      <p class="eyebrow">Women in Tech Forum 2026</p>
+      <h1 class="headline">The biggest day for<br/><span class="accent">women in tech in Finland</span></h1>
+      <p class="lead">A full day of keynotes, panels, workshops and honest conversations about where technology is taking us, and who gets to shape it.</p>
+
+      <div class="hero-actions">
+        <button class="cta" onclick="openModal()">Join the community <span class="arrow">→</span></button>
+        <a class="btn-secondary" href="#about">Learn more</a>
+      </div>
+
+      <div class="hero-foot">
+        <span class="meta-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          22 October 2026
+        </span>
+        <span class="meta-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          10:00 – 16:00
+        </span>
+        <span class="meta-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Wanha Satama, Helsinki
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="about-blob-1" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#623cea" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+    <div class="about-blob-2" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fab07c" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+
+    <div class="about-inner">
+      <span class="section-label">The Forum</span>
+      <h2>Everything you need to know before the big day</h2>
+      <p>The WiT Forum is our flagship event. One full day where member companies, professionals and role models from across the Finnish tech community land in the same room for learning, networking and honest conversation.</p>
+      <p>We have built this edition around what you told us you wanted more of. Every career stage belongs here, from first-year tech professionals to senior leaders, with an emphasis on women.</p>
+
+      <div class="theme-block">
+        <p class="label">Theme</p>
+        <h3>Tech Horizons: Impacting our Future</h3>
+        <p class="theme-copy">Technology is reshaping industries, careers, and the society we all live in. Forum 2026 is where the community gets to look at that head on, and decide how we want to show up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <section class="expect">
+    <span class="section-label">What to expect</span>
+    <h2>A day worth<br/>taking off work for</h2>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <span class="card-accent">◆</span>
+        <h3>Keynotes that stay with you</h3>
+        <p>Bright minds sharing the trends, research and stories shaping the next chapter of tech. Leave with something new to think about on the way home.</p>
+      </div>
+      <div class="expect-card">
+        <span class="card-accent">◆</span>
+        <h3>Honest conversations</h3>
+        <p>Panels and workshops where real people talk about real work. Practical, generous, and happy to sit with the uncomfortable questions.</p>
+      </div>
+      <div class="expect-card">
+        <span class="card-accent">◆</span>
+        <h3>Your new favourite people</h3>
+        <p>Peers, mentors and role models from across the Finnish tech community, all in one room. Bring your questions and a full battery.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FAQ -->
+  <section class="faq">
+    <span class="section-label">Frequently asked</span>
+    <h2>Answers, ahead of time</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Is the Forum free to attend?</summary>
+        <div class="faq-body">
+          <p>The Forum is <strong>free for WiT community members</strong> and <strong>€49 for non-members</strong>.</p>
+          <p>Community membership is completely free for individuals. It gets you into every WiT event at no cost, plus a network of peers across Finnish tech and a steady stream of inspiration from the people shaping where the industry is going. Join the community and your Forum ticket is covered.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Who are the confirmed speakers and partners?</summary>
+        <div class="faq-body">
+          <p>We reveal speakers and partners one by one in the months leading up to the Forum. It keeps the lineup exciting and gives every name the spotlight they deserve.</p>
+          <p>Drop your email in the sign-up and you will get every announcement the moment it goes out. You can also follow Women in Tech Finland on LinkedIn and Instagram.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Who is the Forum for?</summary>
+        <div class="faq-body">
+          <p>Every career stage in tech, from first-year students to senior executives, with an emphasis on women. If you work in tech or are curious about working in tech, you belong in this room.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is there a dress code?</summary>
+        <div class="faq-body">
+          <p>No dress code. Wear something you feel confident and comfortable in. Company-branded gear is welcome if that is your thing.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is the Forum live-streamed?</summary>
+        <div class="faq-body">
+          <p>Yes. The stage programme is live-streamed so the community can tune in from anywhere.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="closing">
+    <div class="closing-blob" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#623cea" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+    <div class="closing-blob-2" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fab07c" d="M460,120 C540,180 560,320 500,420 C440,520 300,560 190,520 C80,480 30,360 50,240 C70,120 200,50 320,60 C380,70 420,90 460,120 Z"/>
+      </svg>
+    </div>
+    <div class="closing-inner">
+      <span class="section-label">Join in</span>
+      <h2>Tech belongs<br/><span class="em">to us all.</span></h2>
+      <p>Pre-sign up and we will be in touch with the Forum 2026 programme, speakers and everything else from Women in Tech Finland.</p>
+      <button class="cta" onclick="openModal()">
+        Join the community
+        <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    <a class="logo footer-logo" href="/" aria-label="Women in Tech Finland">
+      <img src="wit-logo-white.png" alt="Women in Tech Finland" />
+    </a>
+    <div class="footer-meta">Wanha Satama, Pikku Satamakatu 3–5, 00160 Helsinki</div>
+    <div class="footer-links">
+      <a href="https://womenintech.fi" target="_blank" rel="noopener">womenintech.fi</a>
+      <a href="https://docs.google.com/document/d/1siEe8r0FLLCOLXRJVrGjcUSfwYBlZSdMGPAMNoBeXXU/edit?usp=sharing" target="_blank" rel="noopener">Privacy policy</a>
+    </div>
+  </footer>
+
+  <!-- Modal: 2-step signup -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal()" aria-label="Close">×</button>
+      <div id="form-state">
+        <h2 id="modal-title">Join the WiT community</h2>
+        <p class="sub">Free for individuals. Access to every WiT event at no cost, plus Forum 2026 updates the moment they go out.</p>
+
+        <div class="stepper" id="stepper">
+          <span id="step-label">Step 1 of 2</span>
+          <span class="bar"><span class="bar-fill" id="bar-fill" style="width:50%;"></span></span>
+        </div>
+
+        <form id="signup-form" onsubmit="handleSubmit(event)">
+          <div class="step active" id="step-1">
+            <div class="field">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" required />
+            </div>
+            <button type="button" class="submit" onclick="goToStep2()">Continue →</button>
+          </div>
+
+          <div class="step" id="step-2">
+            <div class="field">
+              <label for="fullname">Full name</label>
+              <input type="text" id="fullname" name="fullname" required />
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="industry">Industry</label>
+                <select id="industry" name="industry" required>
+                  <option value="">Select</option>
+                  <option>Software</option>
+                  <option>Finance and FinTech</option>
+                  <option>Healthcare and HealthTech</option>
+                  <option>Manufacturing and Industry</option>
+                  <option>Telecommunications</option>
+                  <option>Education</option>
+                  <option>Public sector</option>
+                  <option>Consulting</option>
+                  <option>Retail and E-commerce</option>
+                  <option>Research and Academia</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="jobtitle">Job title</label>
+                <input type="text" id="jobtitle" name="jobtitle" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="seniority">Seniority</label>
+                <select id="seniority" name="seniority" required>
+                  <option value="">Select</option>
+                  <option>Student</option>
+                  <option>Entry level</option>
+                  <option>Mid-level</option>
+                  <option>Senior</option>
+                  <option>Lead or Principal</option>
+                  <option>Manager</option>
+                  <option>Director</option>
+                  <option>Executive or C-level</option>
+                  <option>Founder</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" placeholder="City, country" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="agegroup">Age group</label>
+              <select id="agegroup" name="agegroup" required>
+                <option value="">Select</option>
+                <option>Under 18</option>
+                <option>18 to 24</option>
+                <option>25 to 34</option>
+                <option>35 to 44</option>
+                <option>45 to 54</option>
+                <option>55 to 64</option>
+                <option>65 and above</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+
+            <label class="checkbox-field">
+              <input type="checkbox" id="newsletter" name="newsletter" />
+              <span>Send me the WiT newsletter — events, activities, opportunities and more from Women in Tech Finland.</span>
+            </label>
+
+            <label class="checkbox-field">
+              <input type="checkbox" id="partnership" name="partnership" />
+              <span>I'm interested in partnership opportunities with WiT for my company or organisation.</span>
+            </label>
+
+            <label class="checkbox-field">
+              <input type="checkbox" id="gdpr" name="gdpr" required />
+              <span>I consent to Women in Tech Finland storing and processing the information I have provided, in line with the <a href="https://docs.google.com/document/d/1siEe8r0FLLCOLXRJVrGjcUSfwYBlZSdMGPAMNoBeXXU/edit" target="_blank" style="color:#623cea;">privacy policy</a> (GDPR).</span>
+            </label>
+
+            <div class="step-nav">
+              <button type="button" class="btn-back" onclick="goToStep1()">← Back</button>
+              <button type="submit" class="submit">Complete membership</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="success" id="success">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 13l4 4L19 7" stroke="#0d0d0d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Welcome in</h3>
+        <p>You're officially part of the WiT community. We'll be in touch with Forum 2026 details, events, and everything coming up at Women in Tech Finland.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function toggleAgenda() {
+    const list = document.getElementById('agenda-list');
+    const btn = document.getElementById('agenda-toggle');
+    const collapsed = list.classList.toggle('collapsed');
+    btn.textContent = collapsed ? 'See full programme ↓' : 'Collapse programme ↑';
+  }
+
+  function openModal(prefillEmail) {
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (prefillEmail) document.getElementById('email').value = prefillEmail;
+    goToStep1();
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('form-state').style.display = 'block';
+    document.getElementById('success').classList.remove('on');
+    document.getElementById('signup-form').reset();
+    goToStep1();
+  }
+  function goToStep1() {
+    document.getElementById('step-1').classList.add('active');
+    document.getElementById('step-2').classList.remove('active');
+    document.getElementById('step-label').textContent = 'Step 1 of 2';
+    document.getElementById('bar-fill').style.width = '50%';
+  }
+  function goToStep2() {
+    const email = document.getElementById('email');
+    if (!email.checkValidity()) { email.reportValidity(); return; }
+    document.getElementById('step-1').classList.remove('active');
+    document.getElementById('step-2').classList.add('active');
+    document.getElementById('step-label').textContent = 'Step 2 of 2';
+    document.getElementById('bar-fill').style.width = '100%';
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-state').style.display = 'none';
+    document.getElementById('success').classList.add('on');
+  }
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>
